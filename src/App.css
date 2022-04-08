@@ -1,8 +1,6 @@
-.all {
-  text-align: center;
-}
 .all,
 form {
+  text-align: center;
   line-height: 30px;
 }
 
@@ -53,5 +51,7 @@ body {
   margin: 30px auto;
 }
 #weatherMain {
+  display: block;
+  margin: 0 auto;
   max-width: 800px;
 }
