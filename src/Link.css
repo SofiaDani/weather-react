@@ -1,0 +1,14 @@
+#center-link {
+  text-align: center;
+}
+#linkrep {
+  color: #3c638f;
+  margin: 0 auto;
+  padding: 4px;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  background-color: #fff;
+}
+#rest {
+  color: #3c638f;
+}
