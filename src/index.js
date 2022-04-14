@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Link from "./Link";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
+import FormattedHours from "./FormattedHours";
 
 import "./App.css";
 import "./Link.css";
@@ -12,7 +14,7 @@ export default function App() {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
-      date: "Tuesday, 15 March 2022",
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
@@ -52,10 +54,14 @@ export default function App() {
             </form>
             <div className="row">
               <div className="offset-1 col-9">
-                <h1>{weatherData.date}</h1>
+                <h1>
+                  <FormattedDate date={weatherData.date} />
+                </h1>
               </div>
               <div className="col-2">
-                <h3>19:41</h3>
+                <h3>
+                  <FormattedHours date={weatherData.date} />
+                </h3>
               </div>
             </div>
             <h2>{weatherData.city}</h2>
