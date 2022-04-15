@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Link from "./Link";
 import axios from "axios";
-import FormattedDate from "./FormattedDate";
-import FormattedHours from "./FormattedHours";
+import WeatherInfo from "./WeatherInfo";
 
 import "./App.css";
 import "./Link.css";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState();
 
   function handleResponse(response) {
     setWeatherData({
@@ -24,12 +24,18 @@ export default function App() {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  function handleCityChange(event) {}
+
   if (weatherData.ready) {
     return (
       <div className="App">
         <div className="container" id="weatherMain">
           <div className="weatherApp">
-            <form className="colAuto">
+            <form className="colAuto" onSubmit={handleSubmit}>
               <div className="row">
                 <div className="offset-1 col-9">
                   <input
@@ -39,6 +45,7 @@ export default function App() {
                     placeholder="Enter city"
                     autoComplete="off"
                     autoFocus="on"
+                    onChange={handleCityChange}
                   />
                 </div>
                 <div className="col-2">
@@ -52,46 +59,7 @@ export default function App() {
                 </div>
               </div>
             </form>
-            <div className="row">
-              <div className="offset-1 col-9">
-                <h1>
-                  <FormattedDate date={weatherData.date} />
-                </h1>
-              </div>
-              <div className="col-2">
-                <h3>
-                  <FormattedHours date={weatherData.date} />
-                </h3>
-              </div>
-            </div>
-            <h2>{weatherData.city}</h2>
-            <h4>
-              <div>{weatherData.description}</div>
-              <div className="text-capitalize">
-                Humidity: {weatherData.humidity} %
-              </div>
-              <div>Wind Speed: {weatherData.wind} km/h</div>
-            </h4>
-            <br />
-            <div className="all">
-              <div className="col">
-                <div className="card-body">
-                  <img id="icon" src="" alt="" className="w-100" />
-                  <h5 className="card-title">Now</h5>
-                  <div>
-                    <img src={weatherData.iconUrl} alt="Weather Description" />
-                  </div>
-                  <p className="card-text" id="color-temp">
-                    <span id="temp"> </span>{" "}
-                    <span id="degrees">
-                      {" "}
-                      {Math.round(weatherData.temperature)}°C
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col" id="forecast"></div>
+            <WeatherInfo data={weatherData} />
           </div>
         </div>
         <Link />
