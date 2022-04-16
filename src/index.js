@@ -7,9 +7,9 @@ import WeatherInfo from "./WeatherInfo";
 import "./App.css";
 import "./Link.css";
 
-export default function App() {
+export default function App(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState();
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherData({
@@ -28,7 +28,10 @@ export default function App() {
     event.preventDefault();
   }
 
-  function handleCityChange(event) {}
+  function handleCityChange(event) {
+    event.preventDefault();
+    setCity(event.target.value);
+  }
 
   if (weatherData.ready) {
     return (
@@ -67,11 +70,10 @@ export default function App() {
     );
   } else {
     const apiKey = "ab71c92f5b2dc5177b732d5b87167782";
-    let city = "London";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
   }
 }
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App defaultCity="London" />, rootElement);
