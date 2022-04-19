@@ -1,8 +1,18 @@
+import axios from "axios";
 import React from "react";
 
 import "./WeatherForecast.css";
 
-export default function WeatherForecast() {
+export default function WeatherForecast(props) {
+  function handleResponse(response) {}
+
+  let apiKey = "ab71c92f5b2dc5177b732d5b87167782";
+  let longitude = props.coordinates.lon;
+  let latitude = props.coordinates.lat;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(handleResponse);
+
   return (
     <div className="col-2" id="forecast">
       <div class="container-row-cols-md-3">
