@@ -22,7 +22,10 @@ export default function WeatherForecastDay(props) {
   return (
     <div>
       <h5 class="card-title">{day()}</h5>
-      <img src={props.data.weather[0].icon} alt="/" />
+      <img
+        src={`http://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`}
+        alt="/"
+      />
       <div class="card-text">
         {" "}
         <span className="max-temperature"> {maxTemperature()} </span>
