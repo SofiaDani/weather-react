@@ -22,7 +22,7 @@ export default function WeatherForecastDay(props) {
   return (
     <div>
       <h5 class="card-title">{day()}</h5>
-      <img src={props.data.weather[0].icon} alt="forecastIcon" />
+      <img src={props.data.weather[0].icon} alt="/" />
       <div class="card-text">
         {" "}
         <span className="max-temperature"> {maxTemperature()} </span>
