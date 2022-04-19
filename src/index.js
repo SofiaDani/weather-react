@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Link from "./Link";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 import "./App.css";
 import "./Link.css";
@@ -69,6 +70,7 @@ export default function App(props) {
               </div>
             </form>
             <WeatherInfo data={weatherData} />
+            <WeatherForecast />
           </div>
         </div>
         <Link />
