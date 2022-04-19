@@ -22,7 +22,7 @@ export default function WeatherInfo(props) {
       <h4>
         <div>{props.data.description}</div>
         <div className="text-capitalize">Humidity: {props.data.humidity} %</div>
-        <div>Wind Speed: {props.data.wind} km/h</div>
+        <div>Wind Speed: {Math.round(props.data.wind)} km/h</div>
       </h4>
       <br />
       <div className="all">
